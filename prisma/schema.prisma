@@ -59,13 +59,15 @@ model VerificationToken {
 model Trade {
   id         String   @id @default(cuid())
   userId     String
-  symbol     String
-  type       String   // "LONG" or "SHORT"
-  entryPrice Float
-  exitPrice  Float?
-  quantity   Float
-  pnl        Float?
+  pair       String
   date       DateTime @default(now())
+  session    String?
+  entryTF    String?
+  direction  String   // "LONG" or "SHORT"
+  pnl        Float?
+  rr         Float?
+  day        String?
+  emotion    String?
   notes      String?  @db.Text
 
   user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
