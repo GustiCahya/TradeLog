@@ -1,0 +1,12 @@
+{
+  "HomePage": {
+    "title": "Welcome to Our Website",
+    "description": "Building amazing experiences",
+    "button": "Get Started"
+  },
+  "Navigation": {
+    "home": "Home",
+    "about": "About",
+    "contact": "Contact"
+  }
+}
