@@ -6,6 +6,8 @@ import { useRouter } from "next/navigation";
 import { ArrowLeft, Activity } from "lucide-react";
 import { signIn } from "next-auth/react";
 
+import { FadeIn } from "../components/PageAnimate";
+
 export default function LoginPage() {
   const router = useRouter();
   const [formData, setFormData] = useState({ email: "", password: "" });
@@ -69,82 +71,88 @@ export default function LoginPage() {
 
       <div className="flex-1 flex items-center justify-center p-6 relative z-10">
         <div className="w-full max-w-md">
-          <Link href="/" className="inline-flex items-center text-sm font-medium text-gray-400 hover:text-white mb-8 transition-colors">
-            <ArrowLeft className="w-4 h-4 mr-2" />
-            Back to Home
-          </Link>
+          <FadeIn delay={0.1}>
+            <Link href="/" className="inline-flex items-center text-sm font-medium text-gray-400 hover:text-white mb-8 transition-colors">
+              <ArrowLeft className="w-4 h-4 mr-2" />
+              Back to Home
+            </Link>
+          </FadeIn>
 
-          <div className="text-center mb-8">
-            <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-white/5 border border-white/10 mb-4">
-              <Activity className="w-6 h-6 text-blue-500" />
+          <FadeIn delay={0.2}>
+            <div className="text-center mb-8">
+              <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-white/5 border border-white/10 mb-4">
+                <Activity className="w-6 h-6 text-blue-500" />
+              </div>
+              <h1 className="text-3xl font-bold text-white tracking-tight">Welcome back</h1>
+              <p className="text-gray-400 mt-2">Log in to your TradeLog account.</p>
             </div>
-            <h1 className="text-3xl font-bold text-white tracking-tight">Welcome back</h1>
-            <p className="text-gray-400 mt-2">Log in to your TradeLog account.</p>
-          </div>
+          </FadeIn>
 
-          <div className="bg-white/5 backdrop-blur-xl border border-white/10 p-8 rounded-2xl shadow-2xl">
-            {successMsg && (
-              <div className="mb-6 p-4 rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-sm">
-                {successMsg}
-              </div>
-            )}
-            
-            {error && (
-              <div className="mb-6 p-4 rounded-lg bg-red-500/10 border border-red-500/20 text-red-400 text-sm">
-                {error}
-              </div>
-            )}
-
-            <form onSubmit={handleSubmit} className="space-y-5">
-              <div className="space-y-2">
-                <label className="text-sm font-medium text-gray-300">Email Address</label>
-                <input 
-                  type="email" 
-                  required
-                  value={formData.email}
-                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  placeholder="you@example.com"
-                  className="w-full h-12 px-4 rounded-lg bg-white/5 border border-white/10 text-white placeholder:text-gray-600 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all"
-                />
-              </div>
-
-              <div className="space-y-2">
-                <div className="flex items-center justify-between">
-                  <label className="text-sm font-medium text-gray-300">Password</label>
-                  <Link href="#" className="text-xs text-blue-400 hover:text-blue-300 transition-colors">
-                    Forgot password?
-                  </Link>
+          <FadeIn delay={0.3}>
+            <div className="bg-white/5 backdrop-blur-xl border border-white/10 p-8 rounded-2xl shadow-2xl">
+              {successMsg && (
+                <div className="mb-6 p-4 rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-sm">
+                  {successMsg}
                 </div>
-                <input 
-                  type="password" 
-                  required
-                  value={formData.password}
-                  onChange={(e) => setFormData({ ...formData, password: e.target.value })}
-                  placeholder="••••••••"
-                  className="w-full h-12 px-4 rounded-lg bg-white/5 border border-white/10 text-white placeholder:text-gray-600 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all"
-                />
-              </div>
+              )}
+              
+              {error && (
+                <div className="mb-6 p-4 rounded-lg bg-red-500/10 border border-red-500/20 text-red-400 text-sm">
+                  {error}
+                </div>
+              )}
 
-              <button 
-                type="submit" 
-                disabled={isLoading}
-                className="w-full h-12 mt-4 rounded-lg bg-white text-black font-semibold hover:bg-gray-200 transition-colors disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center"
-              >
-                {isLoading ? (
-                  <div className="w-5 h-5 border-2 border-black/30 border-t-black rounded-full animate-spin" />
-                ) : (
-                  "Log in"
-                )}
-              </button>
-            </form>
+              <form onSubmit={handleSubmit} className="space-y-5">
+                <div className="space-y-2">
+                  <label className="text-sm font-medium text-gray-300">Email Address</label>
+                  <input 
+                    type="email" 
+                    required
+                    value={formData.email}
+                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                    placeholder="you@example.com"
+                    className="w-full h-12 px-4 rounded-lg bg-white/5 border border-white/10 text-white placeholder:text-gray-600 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all"
+                  />
+                </div>
 
-            <p className="mt-6 text-center text-sm text-gray-400">
-              Don't have an account?{" "}
-              <Link href="/register" className="text-white hover:underline transition-all">
-                Sign up
-              </Link>
-            </p>
-          </div>
+                <div className="space-y-2">
+                  <div className="flex items-center justify-between">
+                    <label className="text-sm font-medium text-gray-300">Password</label>
+                    <Link href="#" className="text-xs text-blue-400 hover:text-blue-300 transition-colors">
+                      Forgot password?
+                    </Link>
+                  </div>
+                  <input 
+                    type="password" 
+                    required
+                    value={formData.password}
+                    onChange={(e) => setFormData({ ...formData, password: e.target.value })}
+                    placeholder="••••••••"
+                    className="w-full h-12 px-4 rounded-lg bg-white/5 border border-white/10 text-white placeholder:text-gray-600 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all"
+                  />
+                </div>
+
+                <button 
+                  type="submit" 
+                  disabled={isLoading}
+                  className="w-full h-12 mt-4 rounded-lg bg-white text-black font-semibold hover:bg-gray-200 transition-colors disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center"
+                >
+                  {isLoading ? (
+                    <div className="w-5 h-5 border-2 border-black/30 border-t-black rounded-full animate-spin" />
+                  ) : (
+                    "Log in"
+                  )}
+                </button>
+              </form>
+
+              <p className="mt-6 text-center text-sm text-gray-400">
+                Don't have an account?{" "}
+                <Link href="/register" className="text-white hover:underline transition-all">
+                  Sign up
+                </Link>
+              </p>
+            </div>
+          </FadeIn>
         </div>
       </div>
     </div>

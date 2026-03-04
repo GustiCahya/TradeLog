@@ -1,5 +1,6 @@
 import { Activity, ArrowUpRight, ArrowDownRight, TrendingUp, DollarSign, Brain } from "lucide-react";
 import Link from "next/link";
+import { FadeIn, StaggerContainer, StaggerItem } from "../components/PageAnimate";
 
 // Mock Data updated for the new schema
 const stats = [
@@ -90,104 +91,110 @@ const recentTrades = [
 export default function OverviewPage() {
   return (
     <div className="flex-1 max-w-full mx-auto w-full px-6 pt-32 pb-24">
-      <div className="max-w-7xl mx-auto flex items-end justify-between mb-8">
-        <div>
-          <h1 className="text-3xl font-bold tracking-tight mb-2 text-white">Dashboard</h1>
-          <p className="text-gray-400">Welcome back. Here is your refined trading performance.</p>
+      <FadeIn delay={0.1}>
+        <div className="max-w-7xl mx-auto flex items-end justify-between mb-8">
+          <div>
+            <h1 className="text-3xl font-bold tracking-tight mb-2 text-white">Dashboard</h1>
+            <p className="text-gray-400">Welcome back. Here is your refined trading performance.</p>
+          </div>
+          <Link 
+            href="/trade-input" 
+            className="h-10 px-4 rounded-lg bg-blue-600 hover:bg-blue-500 text-white font-medium flex items-center justify-center transition-colors"
+          >
+            Log New Trade
+          </Link>
         </div>
-        <Link 
-          href="/trade-input" 
-          className="h-10 px-4 rounded-lg bg-blue-600 hover:bg-blue-500 text-white font-medium flex items-center justify-center transition-colors"
-        >
-          Log New Trade
-        </Link>
-      </div>
+      </FadeIn>
 
       {/* Stats Grid */}
-      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-12">
+      <StaggerContainer className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-12">
         {stats.map((stat) => {
           const Icon = stat.icon;
           return (
-            <div key={stat.name} className="bg-white/5 border border-white/10 rounded-2xl p-6">
-              <div className="flex items-center justify-between mb-4">
-                <p className="text-sm font-medium text-gray-400">{stat.name}</p>
-                <div className="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center">
-                  <Icon className="w-4 h-4 text-gray-300" />
+            <StaggerItem key={stat.name}>
+              <div className="bg-white/5 border border-white/10 rounded-2xl p-6">
+                <div className="flex items-center justify-between mb-4">
+                  <p className="text-sm font-medium text-gray-400">{stat.name}</p>
+                  <div className="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center">
+                    <Icon className="w-4 h-4 text-gray-300" />
+                  </div>
+                </div>
+                <div className="flex items-baseline gap-2">
+                  <h2 className="text-2xl font-bold text-white">{stat.value}</h2>
+                  <span className={`text-xs font-medium flex items-center ${stat.positive ? 'text-emerald-400' : 'text-red-400'}`}>
+                    {stat.positive ? <ArrowUpRight className="w-3 h-3 mr-1" /> : <ArrowDownRight className="w-3 h-3 mr-1" />}
+                    {stat.change}
+                  </span>
                 </div>
               </div>
-              <div className="flex items-baseline gap-2">
-                <h2 className="text-2xl font-bold text-white">{stat.value}</h2>
-                <span className={`text-xs font-medium flex items-center ${stat.positive ? 'text-emerald-400' : 'text-red-400'}`}>
-                  {stat.positive ? <ArrowUpRight className="w-3 h-3 mr-1" /> : <ArrowDownRight className="w-3 h-3 mr-1" />}
-                  {stat.change}
-                </span>
-              </div>
-            </div>
+            </StaggerItem>
           );
         })}
-      </div>
+      </StaggerContainer>
 
       {/* Extended Trade Table */}
-      <div className="bg-white/5 border border-white/10 rounded-2xl overflow-hidden shadow-2xl">
-        <div className="px-6 py-5 border-b border-white/10 flex items-center justify-between bg-white/[0.02]">
-          <h3 className="font-medium text-lg text-white">Refined Trade History</h3>
-          <Link href="/summary" className="text-sm text-blue-400 hover:text-blue-300">View Analytics</Link>
-        </div>
-        
-        <div className="overflow-x-auto">
-          <table className="w-full text-sm text-left">
-            <thead className="text-xs text-gray-400 bg-white/5 uppercase border-b border-white/10">
-              <tr>
-                <th className="px-6 py-4 font-medium">Date / Day</th>
-                <th className="px-6 py-4 font-medium">Pair</th>
-                <th className="px-6 py-4 font-medium">Session</th>
-                <th className="px-6 py-4 font-medium">TF</th>
-                <th className="px-6 py-4 font-medium">Dir</th>
-                <th className="px-6 py-4 font-medium">RR</th>
-                <th className="px-6 py-4 font-medium">Mindset</th>
-                <th className="px-6 py-4 font-medium text-right">PnL</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-white/5">
-              {recentTrades.map((trade) => (
-                <tr key={trade.id} className="hover:bg-white/[0.02] transition-all group">
-                  <td className="px-6 py-4">
-                    <div className="text-white font-medium">{trade.date}</div>
-                    <div className="text-[10px] text-gray-500 uppercase tracking-wider">{trade.day}</div>
-                  </td>
-                  <td className="px-6 py-4 font-semibold text-blue-400">{trade.pair}</td>
-                  <td className="px-6 py-4">
-                    <span className="text-gray-300">{trade.session}</span>
-                  </td>
-                  <td className="px-6 py-4">
-                    <span className="px-1.5 py-0.5 rounded bg-white/5 text-[10px] text-gray-400 border border-white/10">{trade.entryTF}</span>
-                  </td>
-                  <td className="px-6 py-4">
-                    <span className={`px-2 py-1 rounded-md text-[10px] font-bold ${trade.direction === 'LONG' ? 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20' : 'bg-red-500/10 text-red-500 border border-red-500/20'}`}>
-                      {trade.direction}
-                    </span>
-                  </td>
-                  <td className="px-6 py-4">
-                    <span className={`font-mono font-bold ${parseFloat(trade.rr) > 0 ? 'text-emerald-400' : 'text-red-400'}`}>
-                      {trade.rr}R
-                    </span>
-                  </td>
-
-                  <td className="px-6 py-4">
-                    <div className="flex items-center gap-2">
-                       <Brain className="w-3 h-3 text-purple-400" />
-                       <span className="text-xs text-gray-400 italic">{trade.emotion}</span>
-                    </div>
-                  </td>
-                  <td className={`px-6 py-4 text-right font-bold ${trade.positive ? 'text-emerald-400' : 'text-red-400'}`}>
-                    {trade.pnl}
-                  </td>
+      <FadeIn delay={0.5}>
+        <div className="bg-white/5 border border-white/10 rounded-2xl overflow-hidden shadow-2xl">
+          <div className="px-6 py-5 border-b border-white/10 flex items-center justify-between bg-white/[0.02]">
+            <h3 className="font-medium text-lg text-white">Refined Trade History</h3>
+            <Link href="/summary" className="text-sm text-blue-400 hover:text-blue-300">View Analytics</Link>
+          </div>
+          
+          <div className="overflow-x-auto">
+            <table className="w-full text-sm text-left">
+              <thead className="text-xs text-gray-400 bg-white/5 uppercase border-b border-white/10">
+                <tr>
+                  <th className="px-6 py-4 font-medium">Date / Day</th>
+                  <th className="px-6 py-4 font-medium">Pair</th>
+                  <th className="px-6 py-4 font-medium">Session</th>
+                  <th className="px-6 py-4 font-medium">TF</th>
+                  <th className="px-6 py-4 font-medium">Dir</th>
+                  <th className="px-6 py-4 font-medium">RR</th>
+                  <th className="px-6 py-4 font-medium">Mindset</th>
+                  <th className="px-6 py-4 font-medium text-right">PnL</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody className="divide-y divide-white/5">
+                {recentTrades.map((trade) => (
+                  <tr key={trade.id} className="hover:bg-white/[0.02] transition-all group">
+                    <td className="px-6 py-4">
+                      <div className="text-white font-medium">{trade.date}</div>
+                      <div className="text-[10px] text-gray-500 uppercase tracking-wider">{trade.day}</div>
+                    </td>
+                    <td className="px-6 py-4 font-semibold text-blue-400">{trade.pair}</td>
+                    <td className="px-6 py-4">
+                      <span className="text-gray-300">{trade.session}</span>
+                    </td>
+                    <td className="px-6 py-4">
+                      <span className="px-1.5 py-0.5 rounded bg-white/5 text-[10px] text-gray-400 border border-white/10">{trade.entryTF}</span>
+                    </td>
+                    <td className="px-6 py-4">
+                      <span className={`px-2 py-1 rounded-md text-[10px] font-bold ${trade.direction === 'LONG' ? 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20' : 'bg-red-500/10 text-red-500 border border-red-500/20'}`}>
+                        {trade.direction}
+                      </span>
+                    </td>
+                    <td className="px-6 py-4">
+                      <span className={`font-mono font-bold ${parseFloat(trade.rr) > 0 ? 'text-emerald-400' : 'text-red-400'}`}>
+                        {trade.rr}R
+                      </span>
+                    </td>
+
+                    <td className="px-6 py-4">
+                      <div className="flex items-center gap-2">
+                         <Brain className="w-3 h-3 text-purple-400" />
+                         <span className="text-xs text-gray-400 italic">{trade.emotion}</span>
+                      </div>
+                    </td>
+                    <td className={`px-6 py-4 text-right font-bold ${trade.positive ? 'text-emerald-400' : 'text-red-400'}`}>
+                      {trade.pnl}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
-      </div>
+      </FadeIn>
     </div>
   );
 }
