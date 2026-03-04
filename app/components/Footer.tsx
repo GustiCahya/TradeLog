@@ -17,9 +17,12 @@ export default function Footer() {
             </p>
           </div>
           
+          {/* Spacer to push Links to the right */}
+          <div className="hidden md:block"></div>
+          
           {/* Links */}
           <div>
-            <h3 className="text-white font-medium mb-4 text-sm">Product</h3>
+            <h3 className="text-white font-medium mb-4 text-sm">Journal</h3>
             <ul className="flex flex-col gap-3 text-sm text-gray-400">
               <li><Link href="/overview" className="hover:text-white transition-colors">Overview</Link></li>
               <li><Link href="/trade-input" className="hover:text-white transition-colors">Trade Input</Link></li>
