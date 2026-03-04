@@ -20,6 +20,8 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         const user = await prisma.user.findUnique({
           where: { email: credentials.email as string }
         })
+
+        if (!user) return null
         
         // We need bcrypt to compare the hashed password
         const bcrypt = require('bcryptjs');
