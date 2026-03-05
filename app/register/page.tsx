@@ -28,7 +28,7 @@ export default function RegisterPage() {
 
       if (res.ok) {
         // 2. Persist to Local Storage for temporary testing before Neon is fully connected
-        localStorage.setItem("tradelog_temp_user", JSON.stringify(formData));
+        localStorage.setItem("tradexa_temp_user", JSON.stringify(formData));
         
         // Redirect to login page
         router.push("/login?registered=true");

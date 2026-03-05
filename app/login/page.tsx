@@ -30,7 +30,7 @@ export default function LoginPage() {
 
     try {
       // 1. Intercept for local storage test before NextAuth connects to Neon
-      const localUser = localStorage.getItem("tradelog_temp_user");
+      const localUser = localStorage.getItem("tradexa_temp_user");
       if (localUser) {
         const parsed = JSON.parse(localUser);
         if (parsed.email === formData.email && parsed.password === formData.password) {
@@ -84,7 +84,7 @@ export default function LoginPage() {
                 <Activity className="w-6 h-6 text-blue-500" />
               </div>
               <h1 className="text-3xl font-bold text-white tracking-tight">Welcome back</h1>
-              <p className="text-gray-400 mt-2">Log in to your TradeLog account.</p>
+              <p className="text-gray-400 mt-2">Log in to your Tradexa account.</p>
             </div>
           </FadeIn>
 

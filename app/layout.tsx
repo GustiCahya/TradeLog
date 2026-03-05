@@ -15,8 +15,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "TradeLog | Premium Trading Journal",
-  description: "Track, analyze, and optimize your trading performance with TradeLog.",
+  title: "Tradexa | Premium Trading Journal",
+  description: "Track, analyze, and optimize your trading performance with Tradexa.",
 };
 
 export default function RootLayout({

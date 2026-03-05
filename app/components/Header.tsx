@@ -15,19 +15,19 @@ export default async function Header() {
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2 text-white hover:opacity-80 transition-opacity">
           <Activity className="w-6 h-6 text-blue-500" />
-          <span className="text-xl font-bold tracking-tight">TradeLog</span>
+          <span className="text-xl font-bold tracking-tight text-white">Tradexa</span>
         </Link>
         
         {/* Navigation */}
         <nav className="hidden md:flex items-center gap-8 text-sm font-medium">
           <Link href="/overview" className="text-gray-400 hover:text-white transition-colors">
-            Overview
+            Dashboard
           </Link>
           <Link href="/trade-input" className="text-gray-400 hover:text-white transition-colors">
-            Trade Input
+            Log Trade
           </Link>
           <Link href="/summary" className="text-gray-400 hover:text-white transition-colors">
-            Summary
+            Analytics
           </Link>
         </nav>
         

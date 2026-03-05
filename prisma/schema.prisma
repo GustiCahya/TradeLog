@@ -54,7 +54,7 @@ model VerificationToken {
   @@unique([identifier, token])
 }
 
-// TradeLog Models
+// Tradexa Models
 model Trade {
   id         String   @id @default(cuid())
   userId     String

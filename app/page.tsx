@@ -72,7 +72,7 @@ export default function Home() {
                 </div>
                 <h3 className="text-xl font-semibold mb-3">Precision Input</h3>
                 <p className="text-gray-400 leading-relaxed text-sm">
-                  Log entries, exits, position sizes, and custom notes in seconds with our streamlined trade input form.
+                  Log entries, exits, position sizes, and custom notes in seconds with our streamlined log trade form.
                 </p>
               </div>
             </StaggerItem>
@@ -84,7 +84,7 @@ export default function Home() {
                 </div>
                 <h3 className="text-xl font-semibold mb-3">Secure Storage</h3>
                 <p className="text-gray-400 leading-relaxed text-sm">
-                  Your data is securely stored and backed up on Neon PostgreSQL, ensuring your trading history is always safe.
+                  Your data is securely stored and completely private, ensuring that only you have access to your personal trading insights and performance.                
                 </p>
               </div>
             </StaggerItem>

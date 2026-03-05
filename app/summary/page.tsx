@@ -72,7 +72,7 @@ export default function SummaryPage() {
       
       <FadeIn delay={0.2}>
         <div className="mb-10">
-          <h1 className="text-3xl font-bold tracking-tight mb-2 text-white">Performance Analytics</h1>
+          <h1 className="text-3xl font-bold tracking-tight mb-2 text-white">Analytics</h1>
           <p className="text-gray-400">Trading is 10% strategy and 90% psychology. Analyze your edge.</p>
         </div>
       </FadeIn>

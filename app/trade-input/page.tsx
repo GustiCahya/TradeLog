@@ -155,7 +155,7 @@ function TradeInputForm() {
       </FadeIn>
       
       <FadeIn delay={0.2}>
-        <h1 className="text-3xl font-bold tracking-tight mb-2">{editId ? "Edit Trade" : "Log New Trade"}</h1>
+        <h1 className="text-3xl font-bold tracking-tight mb-2">{editId ? "Edit Trade" : "Log Trade"}</h1>
         <p className="text-gray-400 mb-10">Capture every detail of your trade, including your emotional state and RR.</p>
       </FadeIn>
 
