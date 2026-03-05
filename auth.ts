@@ -34,4 +34,18 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       },
     }),
   ],
+  callbacks: {
+    jwt({ token }) {
+      if (token) {
+        token.id = token.sub;
+      }
+      return token;
+    },
+    session({ session, token }) {
+      if (token?.id && session.user) {
+        session.user.id = token.id as string;
+      }
+      return session;
+    },
+  },
 })

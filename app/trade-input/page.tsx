@@ -3,9 +3,11 @@
 import { ArrowLeft, Save } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { FadeIn } from "../components/PageAnimate";
 
 export default function TradeInputPage() {
+  const router = useRouter();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
     pair: "",
@@ -23,11 +25,24 @@ export default function TradeInputPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    // Simulate API call
-    setTimeout(() => {
+    
+    try {
+      const response = await fetch('/api/trades', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData)
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to save trade');
+      }
+
+      router.push('/overview');
+    } catch (error) {
+      console.error(error);
+      alert('An error occurred while saving the trade.');
       setIsSubmitting(false);
-      alert("Trade logged successfully! (Mock)");
-    }, 1000);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {

@@ -5,25 +5,62 @@ import { ArrowLeft, Target, TrendingUp, AlertTriangle } from 'lucide-react';
 import Link from 'next/link';
 import { FadeIn, StaggerContainer, StaggerItem } from '../components/PageAnimate';
 
-// Mock Data focused on RR and Psychological Performance
-const rrBySession = [
-  { name: 'London', avgRR: 2.8 },
-  { name: 'New York', avgRR: 1.9 },
-  { name: 'Asian', avgRR: 1.2 },
-  { name: 'Overlap', avgRR: 3.5 },
-];
+import { useEffect, useState } from 'react';
 
-const pnlCurve = [
-  { day: 'Mon', pnl: 200 },
-  { day: 'Tue', pnl: 650 },
-  { day: 'Wed', pnl: 530 },
-  { day: 'Thu', pnl: 1100 },
-  { day: 'Fri', pnl: 1450 },
-  { day: 'Sat', pnl: 1320 },
-  { day: 'Sun', pnl: 1200 },
-];
+// Define the shape of the analytics data returned by the API
+interface AnalyticsData {
+  pnlCurve: { day: string; pnl: number }[];
+  rrBySession: { name: string; avgRR: number }[];
+  psychology: {
+    mostFrequentEmotion: string;
+    mostFrequentEmotionPercentage: number;
+    worstSession: string;
+    worstSessionAvgRr: number;
+  };
+}
 
 export default function SummaryPage() {
+  const [data, setData] = useState<AnalyticsData | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    async function fetchAnalytics() {
+      try {
+        const response = await fetch('/api/trades/summary');
+        if (response.ok) {
+          const json = await response.json();
+          setData(json);
+        }
+      } catch (error) {
+        console.error("Failed to load analytics", error);
+      } finally {
+        setIsLoading(false);
+      }
+    }
+    
+    fetchAnalytics();
+  }, []);
+
+  if (isLoading) {
+     return (
+        <div className="flex-1 max-w-7xl mx-auto w-full px-6 pt-32 pb-24 flex items-center justify-center min-h-[60vh]">
+          <div className="w-8 h-8 border-4 border-blue-500/30 border-t-blue-500 rounded-full animate-spin" />
+        </div>
+     );
+  }
+
+  // Fallback defaults if no data exists yet
+  const analytics = data || {
+    pnlCurve: [],
+    rrBySession: [],
+    psychology: {
+        mostFrequentEmotion: "N/A",
+        mostFrequentEmotionPercentage: 0,
+        worstSession: "N/A",
+        worstSessionAvgRr: 0
+    }
+  };
+
   return (
     <div className="flex-1 max-w-7xl mx-auto w-full px-6 pt-32 pb-24">
       <FadeIn delay={0.1}>
@@ -50,7 +87,7 @@ export default function SummaryPage() {
             </div>
             <div className="h-[300px] w-full">
               <ResponsiveContainer width="100%" height="100%">
-                <LineChart data={pnlCurve} margin={{ top: 5, right: 20, bottom: 5, left: 0 }}>
+                <LineChart data={analytics.pnlCurve} margin={{ top: 5, right: 20, bottom: 5, left: 0 }}>
                   <Line type="monotone" dataKey="pnl" stroke="#3b82f6" strokeWidth={3} dot={{ fill: '#3b82f6', strokeWidth: 2, r: 4 }} activeDot={{ r: 6 }} />
                   <CartesianGrid stroke="#ffffff05" vertical={false} />
                   <XAxis dataKey="day" stroke="#4b5563" axisLine={false} tickLine={false} />
@@ -74,7 +111,7 @@ export default function SummaryPage() {
             </div>
             <div className="h-[300px] w-full">
               <ResponsiveContainer width="100%" height="100%">
-                <BarChart data={rrBySession} margin={{ top: 5, right: 20, bottom: 5, left: 0 }}>
+                <BarChart data={analytics.rrBySession} margin={{ top: 5, right: 20, bottom: 5, left: 0 }}>
                   <CartesianGrid stroke="#ffffff05" vertical={false} />
                   <XAxis dataKey="name" stroke="#4b5563" axisLine={false} tickLine={false} />
                   <YAxis stroke="#4b5563" axisLine={false} tickLine={false} tickFormatter={(value) => `${value}R`} />
@@ -83,7 +120,7 @@ export default function SummaryPage() {
                     contentStyle={{ backgroundColor: '#000', border: '1px solid #ffffff10', borderRadius: '12px' }}
                   />
                   <Bar dataKey="avgRR" radius={[6, 6, 0, 0]}>
-                    {rrBySession.map((entry, index) => (
+                    {analytics.rrBySession.map((entry, index) => (
                       <Cell key={`cell-${index}`} fill={entry.avgRR > 2 ? '#10b981' : '#3b82f6'} />
                     ))}
                   </Bar>
@@ -100,8 +137,8 @@ export default function SummaryPage() {
           <div className="bg-white/5 border border-white/10 rounded-2xl p-6">
             <p className="text-sm text-gray-400 mb-2">Most Frequent Emotion</p>
             <div className="flex items-center gap-2">
-              <span className="text-2xl font-bold text-white">Disciplined</span>
-              <span className="text-xs px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">42% of trades</span>
+              <span className="text-2xl font-bold text-white">{analytics.psychology.mostFrequentEmotion}</span>
+              <span className="text-xs px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">{analytics.psychology.mostFrequentEmotionPercentage}% of trades</span>
             </div>
           </div>
         </StaggerItem>
@@ -110,8 +147,8 @@ export default function SummaryPage() {
           <div className="bg-white/5 border border-white/10 rounded-2xl p-6">
             <p className="text-sm text-gray-400 mb-2">Worst Session (by RR)</p>
             <div className="flex items-center gap-2">
-              <span className="text-2xl font-bold text-white">Asian</span>
-              <span className="text-xs px-2 py-0.5 rounded bg-red-500/10 text-red-400 border border-red-500/20">1.2R Avg</span>
+              <span className="text-2xl font-bold text-white">{analytics.psychology.worstSession}</span>
+              <span className="text-xs px-2 py-0.5 rounded bg-red-500/10 text-red-400 border border-red-500/20">{analytics.psychology.worstSessionAvgRr}R Avg</span>
             </div>
           </div>
         </StaggerItem>

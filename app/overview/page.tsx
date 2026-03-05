@@ -1,94 +1,23 @@
-import { Activity, ArrowUpRight, ArrowDownRight, TrendingUp, DollarSign, Brain } from "lucide-react";
+import { Activity, ArrowUpRight, TrendingUp, DollarSign, Brain } from "lucide-react";
 import Link from "next/link";
 import { FadeIn, StaggerContainer, StaggerItem } from "../components/PageAnimate";
+import { auth } from "@/auth";
+import { getOverviewStats } from "@/lib/services/trade.service";
 
-// Mock Data updated for the new schema
-const stats = [
-  { name: "Total PnL", value: "+$4,250.00", change: "+12.5%", positive: true, icon: DollarSign },
-  { name: "Win Rate", value: "68.5%", change: "+2.1%", positive: true, icon: TrendingUp },
-  { name: "Total Trades", value: "142", change: "+12 this week", positive: true, icon: Activity },
-  { name: "Avg RR", value: "2.4R", change: "+0.3R", positive: true, icon: ArrowUpRight },
-];
+export default async function OverviewPage() {
+  const session = await auth();
+  console.log("getOverviewStats called", session?.user);
 
-const recentTrades = [
-  { 
-    id: 1, 
-    pair: "BTC/USD", 
-    date: "2023-10-24", 
-    session: "London", 
-    entryTF: "1m", 
-    direction: "LONG", 
-    pnl: "+$450.00", 
-    rr: "3.2", 
-    entry: "64200", 
-    output: "65100", 
-    day: "Tuesday", 
-    emotion: "Disciplined", 
-    positive: true 
-  },
-  { 
-    id: 2, 
-    pair: "EUR/USD", 
-    date: "2023-10-23", 
-    session: "New York", 
-    entryTF: "5m", 
-    direction: "SHORT", 
-    pnl: "+$230.00", 
-    rr: "1.5", 
-    entry: "1.0850", 
-    output: "1.0820", 
-    day: "Monday", 
-    emotion: "Neutral", 
-    positive: true 
-  },
-  { 
-    id: 3, 
-    pair: "ETH/USD", 
-    date: "2023-10-22", 
-    session: "Asian", 
-    entryTF: "15m", 
-    direction: "LONG", 
-    pnl: "-$120.00", 
-    rr: "-1.0", 
-    entry: "3450", 
-    output: "3410", 
-    day: "Sunday", 
-    emotion: "Anxious", 
-    positive: false 
-  },
-  { 
-    id: 4, 
-    pair: "TSLA", 
-    date: "2023-10-21", 
-    session: "New York", 
-    entryTF: "1m", 
-    direction: "LONG", 
-    pnl: "+$775.00", 
-    rr: "5.0", 
-    entry: "210.00", 
-    output: "225.50", 
-    day: "Saturday", 
-    emotion: "Confident", 
-    positive: true 
-  },
-  { 
-    id: 5, 
-    pair: "NVDA", 
-    date: "2023-10-20", 
-    session: "London", 
-    entryTF: "5m", 
-    direction: "SHORT", 
-    pnl: "-$300.00", 
-    rr: "-1.0", 
-    entry: "450.00", 
-    output: "465.00", 
-    day: "Friday", 
-    emotion: "Frustrated", 
-    positive: false 
-  },
-];
+  const data = await getOverviewStats(session?.user?.id || "");
 
-export default function OverviewPage() {
+  const stats = [
+    { name: "Total PnL", value: data.totalPnl >= 0 ? `+$${data.totalPnl.toFixed(2)}` : `-$${Math.abs(data.totalPnl).toFixed(2)}`, positive: data.totalPnl >= 0, icon: DollarSign },
+    { name: "Win Rate", value: `${data.winRate}%`, positive: parseFloat(data.winRate as string) >= 50, icon: TrendingUp },
+    { name: "Total Trades", value: data.totalTrades.toString(), positive: true, icon: Activity },
+    { name: "Avg RR", value: `${data.avgRr}R`, positive: parseFloat(data.avgRr as string) > 1, icon: ArrowUpRight },
+  ];
+
+  const recentTrades = data.recentTrades;
   return (
     <div className="flex-1 max-w-full mx-auto w-full px-6 pt-32 pb-24">
       <FadeIn delay={0.1}>
@@ -121,10 +50,6 @@ export default function OverviewPage() {
                 </div>
                 <div className="flex items-baseline gap-2">
                   <h2 className="text-2xl font-bold text-white">{stat.value}</h2>
-                  <span className={`text-xs font-medium flex items-center ${stat.positive ? 'text-emerald-400' : 'text-red-400'}`}>
-                    {stat.positive ? <ArrowUpRight className="w-3 h-3 mr-1" /> : <ArrowDownRight className="w-3 h-3 mr-1" />}
-                    {stat.change}
-                  </span>
                 </div>
               </div>
             </StaggerItem>
@@ -155,10 +80,12 @@ export default function OverviewPage() {
                 </tr>
               </thead>
               <tbody className="divide-y divide-white/5">
-                {recentTrades.map((trade) => (
+                {recentTrades.map((trade) => {
+                  const isPositive = (trade.pnl || 0) > 0;
+                  return (
                   <tr key={trade.id} className="hover:bg-white/[0.02] transition-all group">
                     <td className="px-6 py-4">
-                      <div className="text-white font-medium">{trade.date}</div>
+                      <div className="text-white font-medium">{new Date(trade.date).toLocaleDateString()}</div>
                       <div className="text-[10px] text-gray-500 uppercase tracking-wider">{trade.day}</div>
                     </td>
                     <td className="px-6 py-4 font-semibold text-blue-400">{trade.pair}</td>
@@ -174,7 +101,7 @@ export default function OverviewPage() {
                       </span>
                     </td>
                     <td className="px-6 py-4">
-                      <span className={`font-mono font-bold ${parseFloat(trade.rr) > 0 ? 'text-emerald-400' : 'text-red-400'}`}>
+                      <span className={`font-mono font-bold ${Number(trade.rr) > 0 ? 'text-emerald-400' : 'text-red-400'}`}>
                         {trade.rr}R
                       </span>
                     </td>
@@ -185,11 +112,11 @@ export default function OverviewPage() {
                          <span className="text-xs text-gray-400 italic">{trade.emotion}</span>
                       </div>
                     </td>
-                    <td className={`px-6 py-4 text-right font-bold ${trade.positive ? 'text-emerald-400' : 'text-red-400'}`}>
-                      {trade.pnl}
+                    <td className={`px-6 py-4 text-right font-bold ${isPositive ? 'text-emerald-400' : 'text-red-400'}`}>
+                      {isPositive ? `+$${trade.pnl?.toFixed(2)}` : `-$${Math.abs(trade.pnl || 0).toFixed(2)}`}
                     </td>
                   </tr>
-                ))}
+                )})}
               </tbody>
             </table>
           </div>
