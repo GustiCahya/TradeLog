@@ -58,9 +58,9 @@ export default function Home() {
                 <div className="w-12 h-12 rounded-2xl bg-blue-500/10 flex items-center justify-center mb-6">
                   <BarChart3 className="w-6 h-6 text-blue-400" />
                 </div>
-                <h3 className="text-xl font-semibold mb-3">Deep Analytics</h3>
+                <h3 className="text-xl font-semibold mb-3">Interactive Dashboard</h3>
                 <p className="text-gray-400 leading-relaxed text-sm">
-                  Automatically calculate your win rate, profit factor, and average R-multiple to understand your true performance.
+                  Filter, sort, and paginate through your trade history instantly. Analyze your Edge with dynamic visual charts on your analytics page.
                 </p>
               </div>
             </StaggerItem>
@@ -70,9 +70,9 @@ export default function Home() {
                 <div className="w-12 h-12 rounded-2xl bg-purple-500/10 flex items-center justify-center mb-6">
                   <Target className="w-6 h-6 text-purple-400" />
                 </div>
-                <h3 className="text-xl font-semibold mb-3">Precision Input</h3>
+                <h3 className="text-xl font-semibold mb-3">Advanced Trade Logging</h3>
                 <p className="text-gray-400 leading-relaxed text-sm">
-                  Log entries, exits, position sizes, and custom notes in seconds with our streamlined log trade form.
+                  Log entries with pair autocomplete, seamless PnL/RR sync, and automatic timezone adjustments. Edit past trades with ease.
                 </p>
               </div>
             </StaggerItem>
