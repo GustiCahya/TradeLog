@@ -30,10 +30,10 @@ export async function POST(req: Request) {
 
   } catch (error: unknown) {
     console.error("Registration error:", error);
-    
+
     // Handle Prisma unique constraint error for duplicate email
     if (error instanceof Error && 'code' in error && (error as { code?: string }).code === 'P2002') {
-       return NextResponse.json({ message: "User with this email already exists" }, { status: 409 });
+      return NextResponse.json({ message: "User with this email already exists" }, { status: 409 });
     }
 
     return NextResponse.json({ message: "Internal server error" }, { status: 500 });
