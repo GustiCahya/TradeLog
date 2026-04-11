@@ -20,7 +20,7 @@ export default function Home() {
           
           <FadeIn delay={0.2}>
             <h1 className="text-5xl md:text-7xl font-bold tracking-tight mb-8 bg-clip-text text-transparent bg-gradient-to-b from-white to-white/60">
-              Kuasai strategi Anda dengan kejelasan mutlak.
+              Kuasai strategi Anda dengan kejelasan mutlak
             </h1>
           </FadeIn>
           
