@@ -14,7 +14,7 @@ export default function Home() {
         <div className="text-center max-w-3xl mx-auto">
           <FadeIn delay={0.1}>
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-sm font-medium text-blue-400 mb-8">
-              Akses Awal
+              Early Access
             </div>
           </FadeIn>
           
