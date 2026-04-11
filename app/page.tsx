@@ -26,7 +26,7 @@ export default function Home() {
           
           <FadeIn delay={0.3}>
             <p className="text-lg md:text-xl text-gray-400 mb-12 leading-relaxed">
-              Latihan dan jurnal trading yang elegan dan kuat dirancang untuk membantu Anda menganalisis trading Anda, menemukan pola tersembunyi, dan meningkatkan profitabilitas Anda.
+              Tingkatkan skill trading Anda dengan tempat latihan dan jurnal yang terintegrasi. Analisis setiap langkah Anda, temukan pola unik di balik setiap trade, dan optimalkan keuntungan Anda di sini
             </p>
           </FadeIn>
           
