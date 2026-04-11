@@ -11,10 +11,10 @@ export default async function OverviewPage() {
   const data = await getOverviewStats(session?.user?.id || "");
 
   const stats = [
-    { name: "Total PnL", value: data.totalPnl >= 0 ? `+$${data.totalPnl.toFixed(2)}` : `-$${Math.abs(data.totalPnl).toFixed(2)}`, positive: data.totalPnl >= 0, icon: DollarSign },
-    { name: "Win Rate", value: `${data.winRate}%`, positive: parseFloat(data.winRate as string) >= 50, icon: TrendingUp },
-    { name: "Total Trades", value: data.totalTrades.toString(), positive: true, icon: Activity },
-    { name: "Avg RR", value: `${data.avgRr}R`, positive: parseFloat(data.avgRr as string) > 1, icon: ArrowUpRight },
+    { name: "Total P&L", value: data.totalPnl >= 0 ? `+$${data.totalPnl.toFixed(2)}` : `-$${Math.abs(data.totalPnl).toFixed(2)}`, positive: data.totalPnl >= 0, icon: DollarSign },
+    { name: "Tingkat Kemenangan", value: `${data.winRate}%`, positive: parseFloat(data.winRate as string) >= 50, icon: TrendingUp },
+    { name: "Total Trading", value: data.totalTrades.toString(), positive: true, icon: Activity },
+    { name: "Rata-rata RR", value: `${data.avgRr}R`, positive: parseFloat(data.avgRr as string) > 1, icon: ArrowUpRight },
   ];
 
   const recentTrades = data.recentTrades;
@@ -23,14 +23,14 @@ export default async function OverviewPage() {
       <FadeIn delay={0.1}>
         <div className="max-w-7xl mx-auto flex items-end justify-between mb-8">
           <div>
-            <h1 className="text-3xl font-bold tracking-tight mb-2 text-white">Dashboard</h1>
-            <p className="text-gray-400">Welcome back. Here is your refined trading performance.</p>
+            <h1 className="text-3xl font-bold tracking-tight mb-2 text-white">Dasbor</h1>
+            <p className="text-gray-400">Selamat datang kembali. Berikut adalah performa trading Anda.</p>
           </div>
           <Link 
             href="/trade-input" 
             className="h-10 px-4 rounded-lg bg-blue-600 hover:bg-blue-500 text-white font-medium flex items-center justify-center transition-colors"
           >
-            Log New Trade
+            Catat Trading Baru
           </Link>
         </div>
       </FadeIn>

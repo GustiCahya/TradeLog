@@ -21,19 +21,19 @@ export default async function Header() {
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2 text-white hover:opacity-80 transition-opacity">
           <Activity className="w-6 h-6 text-blue-500" />
-          <span className="text-xl font-bold tracking-tight text-white">Tradexa</span>
+          <span className="text-xl font-bold tracking-tight text-white">Latihan Trading</span>
         </Link>
         
         {/* Navigation - Desktop */}
         <nav className="hidden md:flex items-center gap-8 text-sm font-medium">
           <Link href="/overview" className="text-gray-400 hover:text-white transition-colors">
-            Dashboard
+            Dasbor
           </Link>
           <Link href="/trade-input" className="text-gray-400 hover:text-white transition-colors">
-            Log Trade
+            Catat Trading
           </Link>
           <Link href="/summary" className="text-gray-400 hover:text-white transition-colors">
-            Analytics
+            Analitik
           </Link>
         </nav>
         
@@ -54,7 +54,7 @@ export default async function Header() {
                   <div className="bg-[#111] border border-white/10 rounded-xl shadow-2xl overflow-hidden py-1">
                     <form action={handleSignOut}>
                       <button type="submit" className="w-full text-left px-4 py-2.5 text-sm font-medium text-orange-400 hover:text-orange-300 hover:bg-white/5 transition-colors cursor-pointer">
-                        Log out
+                        Keluar
                       </button>
                     </form>
                   </div>
@@ -66,13 +66,13 @@ export default async function Header() {
                   href="/login" 
                   className="text-sm font-medium text-gray-300 hover:text-white transition-colors"
                 >
-                  Log in
+                  Masuk
                 </Link>
                 <Link 
                   href="/register" 
                   className="text-sm font-medium px-4 py-2 rounded-full bg-white text-black hover:bg-gray-200 transition-colors"
                 >
-                  Sign up
+                  Daftar
                 </Link>
               </>
             )}

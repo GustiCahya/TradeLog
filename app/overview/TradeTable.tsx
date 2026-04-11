@@ -184,15 +184,15 @@ export default function TradeTable({ trades: initialTrades }: { trades: Trade[] 
   return (
     <div className="bg-white/5 border border-white/10 rounded-2xl overflow-hidden shadow-2xl">
       <div className="px-6 py-5 border-b border-white/10 flex flex-col md:flex-row md:items-center justify-between bg-white/[0.02] gap-4">
-        <h3 className="font-medium text-lg text-white">Refined Trade History</h3>
+        <h3 className="font-medium text-lg text-white">Riwayat Trading</h3>
         <div className="flex items-center gap-3">
           <button
             onClick={() => setIsFilterOpen(!isFilterOpen)}
             className={`flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm font-medium transition-colors ${isFilterOpen ? 'bg-blue-600 text-white' : 'bg-white/10 text-gray-300 hover:bg-white/20'}`}
           >
-            <Filter className="w-4 h-4" /> Filters {Object.values(filters).some(v => Array.isArray(v) ? v.length > 0 : v !== 'Both' && v !== 'All' && v !== '') && `(Active)`}
+            <Filter className="w-4 h-4" /> Saringan {Object.values(filters).some(v => Array.isArray(v) ? v.length > 0 : v !== 'Both' && v !== 'All' && v !== '') && `(Aktif)`}
           </button>
-          <Link href="/summary" className="text-sm text-blue-400 hover:text-blue-300 ml-2">View Analytics</Link>
+          <Link href="/summary" className="text-sm text-blue-400 hover:text-blue-300 ml-2">Lihat Analitik</Link>
         </div>
       </div>
 
@@ -259,7 +259,7 @@ export default function TradeTable({ trades: initialTrades }: { trades: Trade[] 
           </div>
 
           <div className="col-span-full flex justify-end">
-             <button onClick={resetFilters} className="text-sm text-gray-400 hover:text-white transition-colors">Reset All Filters</button>
+             <button onClick={resetFilters} className="text-sm text-gray-400 hover:text-white transition-colors">Atur Ulang Saringan</button>
           </div>
         </div>
       )}
@@ -268,14 +268,14 @@ export default function TradeTable({ trades: initialTrades }: { trades: Trade[] 
         <table className="w-full text-sm text-left">
           <thead className="text-xs text-gray-400 bg-white/5 uppercase border-b border-white/10">
             <tr>
-              <th className="px-6 py-4 font-medium cursor-pointer select-none hover:text-white transition-colors" onClick={() => requestSort('date')}>Date / Day {getSortIcon('date')}</th>
-              <th className="px-6 py-4 font-medium cursor-pointer select-none hover:text-white transition-colors" onClick={() => requestSort('pair')}>Pair {getSortIcon('pair')}</th>
-              <th className="px-6 py-4 font-medium cursor-pointer select-none hover:text-white transition-colors" onClick={() => requestSort('session')}>Session {getSortIcon('session')}</th>
-              <th className="px-6 py-4 font-medium cursor-pointer select-none hover:text-white transition-colors" onClick={() => requestSort('entryTF')}>TF {getSortIcon('entryTF')}</th>
-              <th className="px-6 py-4 font-medium cursor-pointer select-none hover:text-white transition-colors" onClick={() => requestSort('direction')}>Direction {getSortIcon('direction')}</th>
+              <th className="px-6 py-4 font-medium cursor-pointer select-none hover:text-white transition-colors" onClick={() => requestSort('date')}>Tanggal / Hari {getSortIcon('date')}</th>
+              <th className="px-6 py-4 font-medium cursor-pointer select-none hover:text-white transition-colors" onClick={() => requestSort('pair')}>Pasangan {getSortIcon('pair')}</th>
+              <th className="px-6 py-4 font-medium cursor-pointer select-none hover:text-white transition-colors" onClick={() => requestSort('session')}>Sesi {getSortIcon('session')}</th>
+              <th className="px-6 py-4 font-medium cursor-pointer select-none hover:text-white transition-colors" onClick={() => requestSort('entryTF')}>TF Masuk {getSortIcon('entryTF')}</th>
+              <th className="px-6 py-4 font-medium cursor-pointer select-none hover:text-white transition-colors" onClick={() => requestSort('direction')}>Arah {getSortIcon('direction')}</th>
               <th className="px-6 py-4 font-medium cursor-pointer select-none hover:text-white transition-colors" onClick={() => requestSort('rr')}>RR {getSortIcon('rr')}</th>
-              <th className="px-6 py-4 font-medium cursor-pointer select-none hover:text-white transition-colors" onClick={() => requestSort('emotion')}>Mindset {getSortIcon('emotion')}</th>
-              <th className="px-6 py-4 font-medium cursor-pointer select-none hover:text-white transition-colors text-right" onClick={() => requestSort('pnl')}>PnL {getSortIcon('pnl')}</th>
+              <th className="px-6 py-4 font-medium cursor-pointer select-none hover:text-white transition-colors" onClick={() => requestSort('emotion')}>Emosi {getSortIcon('emotion')}</th>
+              <th className="px-6 py-4 font-medium cursor-pointer select-none hover:text-white transition-colors text-right" onClick={() => requestSort('pnl')}>P&L {getSortIcon('pnl')}</th>
             </tr>
           </thead>
           <tbody>
@@ -370,7 +370,7 @@ export default function TradeTable({ trades: initialTrades }: { trades: Trade[] 
               className="flex items-center gap-2.5 w-full px-4 py-3 text-sm text-red-400 hover:bg-red-500/10 transition-colors"
             >
               <Trash2 className="w-4 h-4" />
-              Delete Trade
+              Hapus Trading
             </button>
           </motion.div>
         )}

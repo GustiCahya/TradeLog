@@ -66,14 +66,14 @@ export default function SummaryPage() {
       <FadeIn delay={0.1}>
         <Link href="/overview" className="inline-flex items-center text-sm font-medium text-gray-400 hover:text-white mb-8 transition-colors">
           <ArrowLeft className="w-4 h-4 mr-2" />
-          Back to Dashboard
+          Kembali ke Dasbor
         </Link>
       </FadeIn>
       
       <FadeIn delay={0.2}>
         <div className="mb-10">
-          <h1 className="text-3xl font-bold tracking-tight mb-2 text-white">Analytics</h1>
-          <p className="text-gray-400">Trading is 10% strategy and 90% psychology. Analyze your edge.</p>
+          <h1 className="text-3xl font-bold tracking-tight mb-2 text-white">Analitik</h1>
+          <p className="text-gray-400">Trading adalah 10% strategi dan 90% psikologi. Analisis keunggulan Anda.</p>
         </div>
       </FadeIn>
 
@@ -83,7 +83,7 @@ export default function SummaryPage() {
           <div className="bg-white/5 border border-white/10 rounded-2xl p-6 shadow-xl">
             <div className="flex items-center gap-3 mb-6">
               <TrendingUp className="w-5 h-5 text-blue-400" />
-              <h3 className="font-semibold text-lg text-white">Cumulative Performance</h3>
+              <h3 className="font-semibold text-lg text-white">Performa Kumulatif</h3>
             </div>
             <div className="h-[300px] w-full">
               <ResponsiveContainer width="100%" height="100%">
@@ -107,7 +107,7 @@ export default function SummaryPage() {
           <div className="bg-white/5 border border-white/10 rounded-2xl p-6 shadow-xl">
              <div className="flex items-center gap-3 mb-6">
               <Target className="w-5 h-5 text-emerald-400" />
-              <h3 className="font-semibold text-lg text-white">Average RR by Session</h3>
+              <h3 className="font-semibold text-lg text-white">Rata-rata RR berdasarkan Sesi</h3>
             </div>
             <div className="h-[300px] w-full">
               <ResponsiveContainer width="100%" height="100%">
@@ -135,17 +135,17 @@ export default function SummaryPage() {
       <StaggerContainer className="grid grid-cols-1 md:grid-cols-3 gap-6">
         <StaggerItem>
           <div className="bg-white/5 border border-white/10 rounded-2xl p-6">
-            <p className="text-sm text-gray-400 mb-2">Most Frequent Emotion</p>
+            <p className="text-sm text-gray-400 mb-2">Emosi Paling Sering</p>
             <div className="flex items-center gap-2">
               <span className="text-2xl font-bold text-white">{analytics.psychology.mostFrequentEmotion}</span>
-              <span className="text-xs px-2 py-0.5 rounded bg-blue-500/10 text-blue-400 border border-blue-500/20">{analytics.psychology.mostFrequentEmotionPercentage}% of trades</span>
+              <span className="text-xs px-2 py-0.5 rounded bg-blue-500/10 text-blue-400 border border-blue-500/20">{analytics.psychology.mostFrequentEmotionPercentage}% dari trading</span>
             </div>
           </div>
         </StaggerItem>
         
         <StaggerItem>
           <div className="bg-white/5 border border-white/10 rounded-2xl p-6">
-            <p className="text-sm text-gray-400 mb-2">Worst Session (by RR)</p>
+            <p className="text-sm text-gray-400 mb-2">Sesi Terburuk (berdasarkan RR)</p>
             <div className="flex items-center gap-2">
               <span className="text-2xl font-bold text-white">{analytics.psychology.worstSession}</span>
               <span className="text-xs px-2 py-0.5 rounded bg-orange-500/10 text-orange-400 border border-orange-500/20">{analytics.psychology.worstSessionAvgRr}R Avg</span>
@@ -159,8 +159,8 @@ export default function SummaryPage() {
                <AlertTriangle className="w-6 h-6 text-blue-400" />
              </div>
              <div>
-               <p className="text-xs text-gray-500 uppercase font-bold tracking-widest">Insight</p>
-               <p className="text-sm text-gray-300">Stick to London/NY for higher RR setups.</p>
+               <p className="text-xs text-gray-500 uppercase font-bold tracking-widest">Wawasan</p>
+               <p className="text-sm text-gray-300">Tetap pada London/NY untuk pengaturan RR yang lebih tinggi.</p>
              </div>
           </div>
         </StaggerItem>

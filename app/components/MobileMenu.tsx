@@ -18,9 +18,9 @@ export default function MobileMenu({ isLoggedIn, userName, onSignOut }: MobileMe
   const closeMenu = () => setIsOpen(false);
 
   const navLinks = [
-    { href: '/overview', label: 'Dashboard', icon: LayoutDashboard },
-    { href: '/trade-input', label: 'Log Trade', icon: PenLine },
-    { href: '/summary', label: 'Analytics', icon: BarChart3 },
+    { href: '/overview', label: 'Dasbor', icon: LayoutDashboard },
+    { href: '/trade-input', label: 'Catat Trading', icon: PenLine },
+    { href: '/summary', label: 'Analitik', icon: BarChart3 },
   ];
 
   return (
@@ -97,7 +97,7 @@ export default function MobileMenu({ isLoggedIn, userName, onSignOut }: MobileMe
                       className="flex items-center gap-3 w-full px-4 py-3 rounded-xl text-orange-400 hover:bg-orange-500/10 transition-all font-medium"
                     >
                       <LogOut className="w-5 h-5" />
-                      Log out
+                      Keluar
                     </button>
                   </div>
                 ) : (
@@ -107,14 +107,14 @@ export default function MobileMenu({ isLoggedIn, userName, onSignOut }: MobileMe
                       onClick={closeMenu}
                       className="flex items-center justify-center h-11 rounded-lg border border-white/10 text-sm font-medium text-white hover:bg-white/5 transition-colors"
                     >
-                      Log in
+                      Masuk
                     </Link>
                     <Link
                       href="/register"
                       onClick={closeMenu}
                       className="flex items-center justify-center h-11 rounded-lg bg-white text-black text-sm font-medium hover:bg-gray-200 transition-colors"
                     >
-                      Sign up
+                      Daftar
                     </Link>
                   </div>
                 )}

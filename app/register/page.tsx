@@ -78,7 +78,7 @@ export default function RegisterPage() {
           <FadeIn delay={0.1}>
             <Link href="/" className="inline-flex items-center text-sm font-medium text-gray-400 hover:text-white mb-8 transition-colors">
               <ArrowLeft className="w-4 h-4 mr-2" />
-              Back to Home
+              Kembali ke Beranda
             </Link>
           </FadeIn>
 
@@ -87,8 +87,8 @@ export default function RegisterPage() {
               <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-white/5 border border-white/10 mb-4">
                 <Activity className="w-6 h-6 text-blue-500" />
               </div>
-              <h1 className="text-3xl font-bold text-white tracking-tight">Create an account</h1>
-              <p className="text-gray-400 mt-2">Start journaling your trades today.</p>
+              <h1 className="text-3xl font-bold text-white tracking-tight">Buat akun</h1>
+              <p className="text-gray-400 mt-2">Mulai jurnal trading Anda hari ini.</p>
             </div>
           </FadeIn>
 
@@ -104,7 +104,7 @@ export default function RegisterPage() {
 
                 {/* Full Name */}
                 <div className="space-y-1.5">
-                  <label className="text-sm font-medium text-gray-300">Full Name</label>
+                  <label className="text-sm font-medium text-gray-300">Nama Lengkap</label>
                   <input
                     type="text"
                     {...register("name")}
@@ -122,7 +122,7 @@ export default function RegisterPage() {
 
                 {/* Email */}
                 <div className="space-y-1.5">
-                  <label className="text-sm font-medium text-gray-300">Email Address</label>
+                  <label className="text-sm font-medium text-gray-300">Alamat Email</label>
                   <input
                     type="text"
                     inputMode="email"
@@ -141,7 +141,7 @@ export default function RegisterPage() {
 
                 {/* Password */}
                 <div className="space-y-1.5">
-                  <label className="text-sm font-medium text-gray-300">Password</label>
+                  <label className="text-sm font-medium text-gray-300">Kata Sandi</label>
                   <input
                     type="password"
                     {...register("password")}
@@ -165,15 +165,15 @@ export default function RegisterPage() {
                   {isLoading ? (
                     <div className="w-5 h-5 border-2 border-black/30 border-t-black rounded-full animate-spin" />
                   ) : (
-                    "Create Account"
+                    "Buat Akun"
                   )}
                 </button>
               </form>
 
               <p className="mt-6 text-center text-sm text-gray-400">
-                Already have an account?{" "}
+                Sudah punya akun?{" "}
                 <Link href="/login" className="text-white hover:underline transition-all">
-                  Log in
+                  Masuk
                 </Link>
               </p>
             </div>

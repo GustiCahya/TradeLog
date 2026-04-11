@@ -61,7 +61,7 @@ export default function LoginPage() {
           <FadeIn delay={0.1}>
             <Link href="/" className="inline-flex items-center text-sm font-medium text-gray-400 hover:text-white mb-8 transition-colors">
               <ArrowLeft className="w-4 h-4 mr-2" />
-              Back to Home
+              Kembali ke Beranda
             </Link>
           </FadeIn>
 
@@ -70,8 +70,8 @@ export default function LoginPage() {
               <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-white/5 border border-white/10 mb-4">
                 <Activity className="w-6 h-6 text-blue-500" />
               </div>
-              <h1 className="text-3xl font-bold text-white tracking-tight">Welcome back</h1>
-              <p className="text-gray-400 mt-2">Log in to your Tradexa account.</p>
+              <h1 className="text-3xl font-bold text-white tracking-tight">Selamat datang kembali</h1>
+              <p className="text-gray-400 mt-2">Masuk ke akun Latihan Trading Anda.</p>
             </div>
           </FadeIn>
 
@@ -91,7 +91,7 @@ export default function LoginPage() {
 
               <form onSubmit={handleSubmit} className="space-y-5">
                 <div className="space-y-2">
-                  <label className="text-sm font-medium text-gray-300">Email Address</label>
+                  <label className="text-sm font-medium text-gray-300">Alamat Email</label>
                   <input 
                     type="text"
                     inputMode="email" 
@@ -106,9 +106,9 @@ export default function LoginPage() {
 
                 <div className="space-y-2">
                   <div className="flex items-center justify-between">
-                    <label className="text-sm font-medium text-gray-300">Password</label>
+                    <label className="text-sm font-medium text-gray-300">Kata Sandi</label>
                     <Link href="#" tabIndex={4} className="text-xs text-blue-400 hover:text-blue-300 transition-colors">
-                      Forgot password?
+                      Lupa kata sandi?
                     </Link>
                   </div>
                   <input 
@@ -131,15 +131,15 @@ export default function LoginPage() {
                   {isLoading ? (
                     <div className="w-5 h-5 border-2 border-black/30 border-t-black rounded-full animate-spin" />
                   ) : (
-                    "Log in"
+                    "Masuk"
                   )}
                 </button>
               </form>
 
               <p className="mt-6 text-center text-sm text-gray-400">
-                Don&apos;t have an account?{" "}
+                Belum punya akun?{" "}
                 <Link href="/register" className="text-white hover:underline transition-all">
-                  Sign up
+                  Daftar
                 </Link>
               </p>
             </div>

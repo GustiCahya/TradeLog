@@ -150,13 +150,13 @@ function TradeInputForm() {
       <FadeIn delay={0.1}>
         <Link href="/overview" className="inline-flex items-center text-sm font-medium text-gray-400 hover:text-white mb-8 transition-colors">
           <ArrowLeft className="w-4 h-4 mr-2" />
-          Back to Dashboard
+          Kembali ke Dasbor
         </Link>
       </FadeIn>
       
       <FadeIn delay={0.2}>
-        <h1 className="text-3xl font-bold tracking-tight mb-2">{editId ? "Edit Trade" : "Log Trade"}</h1>
-        <p className="text-gray-400 mb-10">Capture every detail of your trade, including your emotional state and RR.</p>
+        <h1 className="text-3xl font-bold tracking-tight mb-2">{editId ? "Edit Trading" : "Catat Trading"}</h1>
+        <p className="text-gray-400 mb-10">Catat setiap detail trading Anda, termasuk keadaan emosi dan RR Anda.</p>
       </FadeIn>
 
       <FadeIn delay={0.3}>
@@ -203,7 +203,7 @@ function TradeInputForm() {
               {/* Date */}
               <div className="space-y-2">
                 <label htmlFor="date" className="block text-sm font-medium text-gray-300">
-                  Date & Time
+                  Tanggal & Waktu
                 </label>
                 <input 
                   id="date"
@@ -219,7 +219,7 @@ function TradeInputForm() {
               {/* Day */}
               <div className="space-y-2">
                 <label htmlFor="day" className="block text-sm font-medium text-gray-300">
-                  Day
+                  Hari
                 </label>
                 <select 
                   id="day"
@@ -317,7 +317,7 @@ function TradeInputForm() {
               {/* Emotion */}
               <div className="space-y-2">
                 <label htmlFor="emotion" className="block text-sm font-medium text-gray-300">
-                  Emotion
+                  Emosi
                 </label>
                 <select 
                   id="emotion"
@@ -337,14 +337,14 @@ function TradeInputForm() {
             {/* General Notes */}
             <div className="space-y-2">
               <label htmlFor="notes" className="block text-sm font-medium text-gray-300">
-                General Notes & Reflection
+                Catatan & Refleksi
               </label>
               <textarea 
                 id="notes"
                 rows={3}
                 value={formData.notes}
                 onChange={handleChange}
-                placeholder="Reflect on the trade execution..." 
+                placeholder="Refleksikan eksekusi trading..." 
                 className="w-full p-4 bg-white/5 border border-white/10 rounded-lg text-white placeholder:text-gray-500 focus:outline-none focus:border-blue-500 transition-all resize-y"
               />
             </div>
@@ -359,12 +359,12 @@ function TradeInputForm() {
                 {isSubmitting ? (
                   <span className="flex items-center gap-2">
                     <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                    Saving...
+                    Menyimpan...
                   </span>
                 ) : (
                   <span className="flex items-center gap-2">
                     <Save className="w-4 h-4" />
-                    {editId ? "Update Trade" : "Save Trade Record"}
+                    {editId ? "Perbarui Trading" : "Simpan Catatan Trading"}
                   </span>
                 )}
               </button>

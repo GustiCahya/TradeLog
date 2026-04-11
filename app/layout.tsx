@@ -15,8 +15,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Tradexa | Premium Trading Journal",
-  description: "Track, analyze, and optimize your trading performance with Tradexa.",
+  title: "Latihan Trading",
+  description: "Lacak, analisis, dan optimalkan performa trading Anda dengan Latihan Trading.",
 };
 
 export default function RootLayout({
@@ -25,7 +25,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-  <html lang="en" suppressHydrationWarning>
+  <html lang="id" suppressHydrationWarning>
     <body
       className={`${geistSans.variable} ${geistMono.variable} antialiased bg-black text-white selection:bg-blue-500/30 min-h-screen flex flex-col`}
     >
